@@ -14,3 +14,11 @@ $(".edit").click(function() {
     $('#userform input[name="mobile"]').val(mobile);
     $('#userform input[type="submit"]').val("Update");
 });
+
+$(document).ready(function () {
+    if($('#flash_msg').length){
+        setTimeout(function () {
+            $('#flash_msg').remove();
+        }, 2000);
+    }
+});

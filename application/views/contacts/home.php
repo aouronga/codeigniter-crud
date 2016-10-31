@@ -22,6 +22,9 @@
     <input type="submit" value="Submit">
 <?php echo form_close(); ?>
 <h1>Contact List</h1>
+<?php if(!empty($flash_msg)): ?>
+<p id="flash_msg"><?php echo $flash_msg; ?></p>
+<?php endif; ?>
 <?php if(!empty($values)){ ?>
 <table border="1px solid black">
 <thead>
