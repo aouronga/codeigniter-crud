@@ -15,10 +15,12 @@ class ContactController extends CI_Controller
         $this->load->model('ContactModel');
         $this->load->helper('form');
         $this->load->helper('url');
+
     }
 
     public function index()
     {
+        $data['flash_msg'] = $this->session->flash_msg;
         $data['values'] = $this->showall();
         $this->load->view('contacts/home', $data);
     }
@@ -28,6 +30,7 @@ class ContactController extends CI_Controller
         $data = $this->input->post();
         $x = $this->ContactModel->ContactInsert($data);
         if ($x) {
+            $this->session->set_flashdata('flash_msg', 'New contact saved!');
             redirect(base_url());
         }
     }
@@ -36,6 +39,7 @@ class ContactController extends CI_Controller
         $data = $this->input->post();
         $x = $this->ContactModel->Update($data);
         if($x == true){
+            $this->session->set_flashdata('flash_msg', 'Contact updated!');
             redirect(base_url());
         }
     }
@@ -50,6 +54,7 @@ class ContactController extends CI_Controller
     {
         $x = $this->ContactModel->Delete($id);
         if($x == true){
+            $this->session->set_flashdata('flash_msg', 'Contact deleted!');
             redirect(base_url());
         }
     }
